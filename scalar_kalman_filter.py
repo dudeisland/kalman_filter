@@ -20,7 +20,7 @@ u = 1500                        # Gas (system input) [Newtons]g
 
 # Real vehicle parameters (the absolutely correct values for simulation)
 m_real = 1500                   # Mass [kg]
-theta_real = 200                    # Air drag
+theta_real = 200                # Air drag
 w_real = 0.4                    # Process noise standard deviation
 r_real = 2                      # Measurement noise standard deviation
 
