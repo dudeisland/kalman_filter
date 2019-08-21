@@ -25,8 +25,8 @@ w_real = 0.4                    # Process noise standard deviation
 r_real = 2                      # Measurement noise standard deviation
 
 # Constants (for state space model)
-a_real = -T*theta_real/m_real + 1   # System constant
-b_real = 1/m_real               # Measurement constant
+a_real = -T*theta_real/m_real + 1  # System constant
+b_real = 1/m_real                  # Measurement constant
 
 # Kalman filter parameters (must be measured or estimated somehow)
 # Vehicle model constants.
@@ -65,13 +65,12 @@ out_x_hat = np.zeros((n_samples+1, 1))
 out_G = np.zeros((n_samples+1, 1))
 out_p = np.zeros((n_samples+1, 1))
 
-# Run the Kalman filter
-for k in range(0, n_samples):
-    pass
+# The simulation loop where the Kalman filter is used.
+for k in range(0, n_samples+1):
 
     # OPTIONAL
     # If speed measurements stop, the measurement variance is set to very high
-    # value so that the algorithm would give more weight to the model. % So
+    # value so that the algorithm would give more weight to the model. So
     # for a while the speed is read only from the model hoping it won't drift
     # too far from the actual speed.
     if z[k] == 0:
@@ -79,7 +78,7 @@ for k in range(0, n_samples):
     else:
         R = r**2
 
-    # THE KALMAN FILTER BEGINS
+    # ----------------------- THE KALMAN FILTER BEGINS -------------------------
 
     # Predict the next state using the system model (state space model).
     x_hat = a*x_hat + b*u       # a-priori estimate
@@ -92,17 +91,21 @@ for k in range(0, n_samples):
     x_hat = x_hat + G*(z[k]-h*x_hat)  # a-posteriori estimate
     p = p*(1-h*G)                     # a-posteriori variance
 
-    # KALMAN FILTER ENDS
+    # ----------------------- THE KALMAN FILTER ENDS ---------------------------
 
     # Collect data for plotting.
     out_x_hat[k] = x_hat
     out_G[k] = G
     out_p[k] = p
 
+
+# Create time vector for plotting.
 t = T * np.arange(n_samples+1)
 
+# Plot the results
 plt.figure(figsize=(12, 6))
 plt.plot(t, v, t, z, '.', t, out_x_hat)
+plt.title('Car speed estimation using Kalman filter')
 plt.legend(('Real speed', 'Measured speed', 'Estimated speed'))
 plt.xlabel('Time [seconds]')
 plt.ylabel('Speed [m/s]')
