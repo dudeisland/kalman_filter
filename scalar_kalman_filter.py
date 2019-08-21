@@ -14,7 +14,7 @@ import random
 random.seed(1)
 
 # Simulation parameters
-n_samples = 350                 # Number of samples
+N = 300                         # Number of samples
 T = 0.2                         # Sample period
 u = 1500                        # Gas (system input) [Newtons]g
 
@@ -52,21 +52,21 @@ p = 1000                        # Initial Kalman variance
 x_hat = 0
 
 # Create the real vehicle speed vector and the measurement vector
-v = np.zeros((n_samples + 1, 1))  # Real speed with process noise
-z = np.zeros((n_samples + 1, 1))  # Speed measurement with measurement noise
+v = np.zeros((N, 1))  # Real speed with process noise
+z = np.zeros((N, 1))  # Speed measurement with measurement noise
 
-for k in range(0, n_samples):
+for k in range(0, N - 1):
     v[k+1] = a_real*v[k] + b_real*u + w_real*(2*random.random()-1)
     z[k+1] = v[k+1] + r_real*(2*random.random()-1) + bias
 
 # Initialize the simulation variables. Store the estimates to vector for
 # plotting.
-out_x_hat = np.zeros((n_samples+1, 1))
-out_G = np.zeros((n_samples+1, 1))
-out_p = np.zeros((n_samples+1, 1))
+out_x_hat = np.zeros((N, 1))
+out_G = np.zeros((N, 1))
+out_p = np.zeros((N, 1))
 
 # The simulation loop where the Kalman filter is used.
-for k in range(0, n_samples+1):
+for k in range(0, N):
 
     # OPTIONAL
     # If speed measurements stop, the measurement variance is set to very high
@@ -100,7 +100,7 @@ for k in range(0, n_samples+1):
 
 
 # Create time vector for plotting.
-t = T * np.arange(n_samples+1)
+t = T * np.arange(N)
 
 # Plot the results
 plt.figure(figsize=(12, 6))
