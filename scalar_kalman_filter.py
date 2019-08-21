@@ -20,20 +20,20 @@ u = 1500                        # Gas (system input) [Newtons]g
 
 # Real vehicle parameters (the absolutely correct values for simulation)
 m_real = 1500                   # Mass [kg]
-b_real = 200                    # Air drag
+theta_real = 200                    # Air drag
 w_real = 0.4                    # Process noise standard deviation
 r_real = 2                      # Measurement noise standard deviation
 
 # Constants (for state space model)
-a_real = -T*b_real/m_real + 1   # System constant
+a_real = -T*theta_real/m_real + 1   # System constant
 b_real = 1/m_real               # Measurement constant
 
 # Kalman filter parameters (must be measured or estimated somehow)
 # Vehicle model constants.
 m = 1500                        # Mass [kg]
-b = 200                         # Air drag
-a = (-T*b/m + 1)                # Constant describing the system
-b = 1/m                         # Constant describing the system
+theta = 200                     # Air drag
+a = (-T*theta/m + 1)            # System constant
+b = 1/m                         # Measurement constant
 
 # Noise parameters.
 w = 0.4                         # Process noise standard deviation
