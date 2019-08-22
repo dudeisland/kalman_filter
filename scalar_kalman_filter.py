@@ -16,7 +16,7 @@ random.seed(1)
 # Simulation parameters
 N = 300                         # Number of samples
 T = 0.2                         # Sample period
-u = 1500                        # Gas (system input) [Newtons]g
+u = 4000                        # Gas (system input) [Newtons]g
 
 # Real vehicle parameters (the absolutely correct values for simulation)
 m_real = 1500                   # Mass [kg]
@@ -26,14 +26,14 @@ r_real = 2                      # Measurement noise standard deviation
 
 # Constants (for state space model)
 a_real = -T*theta_real/m_real + 1  # System constant
-b_real = 1/m_real                  # Measurement constant
+b_real = T/m_real                  # Input constant
 
 # Kalman filter parameters (must be measured or estimated somehow)
 # Vehicle model constants.
 m = 1500                        # Mass [kg]
 theta = 200                     # Air drag
 a = (-T*theta/m + 1)            # System constant
-b = 1/m                         # Measurement constant
+b = T/m                         # Input constant
 
 # Noise parameters.
 w = 0.4                         # Process noise standard deviation
