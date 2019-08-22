@@ -1,22 +1,25 @@
-# Example of Kalman estimation for vehicle speed.
-# Joni Leppänen
+# Example of Kalman filtering for vehicle speed
+# Joni Leppänen, 22.08.2019
 #
 # See the algorithm proof at:
 # http://www.swarthmore.edu/NatSci/echeeve1/Ref/Kalman/ScalarKalman.html
 #
 # This script uses the same notation as in the website above except the
-# Kalman gain is noted with 'G' to avoid confusion with the time index k.
+# Kalman gain is noted as 'G' instead of k, and the time index is noted
+# as k instead of j. Also, do not confuse the sample period T in this code to
+# the delay operator also noted as T in the block diagrams on the website.
 import numpy as np
 from matplotlib import pyplot as plt
 import random
 
-# Seed for random generator
+# Set seed for the random generator so that comparing the algorithm output when
+# tweaking the parameters is easier.
 random.seed(1)
 
 # Simulation parameters
 N = 300                         # Number of samples
-T = 0.2                         # Sample period
-u = 4000                        # Gas (system input) [Newtons]g
+T = 0.2                         # Sample period [seconds]
+u = 4000                        # Gas (system input) [Newtons]
 
 # Real vehicle parameters (the absolutely correct values for simulation)
 m_real = 1500                   # Mass [kg]
