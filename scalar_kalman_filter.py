@@ -25,14 +25,14 @@ w_real = 0.4                    # Process noise standard deviation
 r_real = 2                      # Measurement noise standard deviation
 
 # Constants (for state space model)
-a_real = -T*theta_real/m_real + 1  # System constant
+a_real = 1 - T*theta_real/m_real   # System constant
 b_real = T/m_real                  # Input constant
 
 # Kalman filter parameters (must be measured or estimated somehow)
 # Vehicle model constants.
 m = 1500                        # Mass [kg]
 theta = 200                     # Air drag
-a = (-T*theta/m + 1)            # System constant
+a = 1 - T*theta/m               # System constant
 b = T/m                         # Input constant
 
 # Noise parameters.
