@@ -62,6 +62,10 @@ for k in range(0, N - 1):
     v[k+1] = a_real*v[k] + b_real*u + w_real*(2*random.random()-1)
     z[k+1] = v[k+1] + r_real*(2*random.random()-1) + bias
 
+# Simulate the situation where speed sensor stops measuring for some reason
+# for a few seconds and then returns back to life. Uncomment to test.
+# z[100:150] = 0
+
 # Initialize the simulation variables. Store the estimates to vector for
 # plotting.
 out_x_hat = np.zeros((N, 1))
