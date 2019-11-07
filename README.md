@@ -1,3 +1,8 @@
 # Examples of Kalman filtering
 
-At the moment this repository contains only one example of scalar version of the Kalman filter. See the Jupyter notebook for more information about the example. The free body diagram mentioned in the notebook will be added once I get the notebook rendering on Github to work correctly. For now, see the car.png file.
+Examples are available as Jupyter notebook and .py files.
+
+**Jupyter notebook examples**
+
+[Scalar Kalman filter](https://nbviewer.jupyter.org/github/dudeisland/kalman_filter/blob/master/scalar_kalman_filter.ipynb)  
+Scalar version of of the Kalman filter for gaining intuition for the algorithm without the matrix algebra stuff.
