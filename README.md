@@ -1,6 +1,6 @@
 # Examples of Kalman filtering
 
-Examples are available as Jupyter notebook and .py files.
+Available as Jupyter notebook and .py files.
 
 **Jupyter notebook examples**
 
